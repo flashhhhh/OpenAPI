@@ -1,0 +1,10 @@
+database:
+  host: "postgres"
+  port: 5432
+  user: "postgres"
+  password: "12345678"
+  db_name: "swagger_example"
+
+jwt:
+  secret_key: "abc123"
+  token_expiry: "1h"

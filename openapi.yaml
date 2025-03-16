@@ -1,10 +1,10 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   title: Swagger Example APIs
   description: Simple APIs written in Go to demonstrate Swagger
   version: 1.0.0
 servers:
-  - url: http://localhost:1234
+  - url: http://localhost:1906
     description: Local server
 paths:
   /users:
@@ -57,7 +57,7 @@ paths:
         '500':
           description: Internal server error
 
-  /users/register:
+  /users/signup:
     post:
       summary: Register a new user
       description: Register a new user
@@ -70,6 +70,8 @@ paths:
               type: object
               properties:
                 username:
+                  type: string
+                password:
                   type: string
                 name:
                   type: string
@@ -96,7 +98,7 @@ paths:
       description: Login a user
       requestBody:
         description: User to login
-        required: true
+        required: false
         content:
           application/json:
             schema:

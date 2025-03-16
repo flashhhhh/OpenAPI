@@ -1,6 +1,28 @@
-version: "1.0"
-
 services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: swagger_example
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - my_network
+  
+  go_api:
+    image: go_api
+    ports:
+      - "1906:1906"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    networks:
+      - my_network
+  
   swagger:
     image: swaggerapi/swagger-ui
     ports:
@@ -9,3 +31,9 @@ services:
       - SWAGGER_JSON=/openapi.yaml
     volumes:
       - ./openapi.yaml:/openapi.yaml
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
