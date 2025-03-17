@@ -30,7 +30,7 @@ services:
     environment:
       - SWAGGER_JSON=/openapi.yaml
     volumes:
-      - ./openapi.yaml:/openapi.yaml
+      - ./docs/openapi.yaml:/openapi.yaml
     networks:
       - my_network
 
